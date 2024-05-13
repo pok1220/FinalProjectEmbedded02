@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <style>
+        div {
+          border: 1px solid navy;
+          padding: 10px;
+          width: 300px;
+          height: 300px;
+          text-align: justify;
+        }
+     </style>
+    <title> ESP8266 Server getting Query</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=width-device, initial-scale=1.0">   
+</head>
+<body>
+<p> LED Status: <span id="led-stat">__</span> </p>
+<button onclick="myFunction()"> TOGGLE </button><br>
+<br>
+<label for="sdata">Enter data : </label>
+<input type="text" id="sdata" name="sdata" size="40"><br>
+<br>
+<button onclick="SendData()"> Send Data </button><br>
+<br>
+<form>
+<h2>Arduino responded data</h2>
+   <div id ="myDiv"> </div>
+</form>
+
+</body>
+
+<script>
+function myFunction()
+{
+  console.log("button1 was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstat";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-stat").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+
+function SendData()
+{
+  console.log("button2 was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/showpara?"+ document.getElementById("sdata").value;
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("myDiv").innerHTML = this.responseText;
+      document.getElementById("myDiv").innerText = this.responseText;
+     
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+document.addEventListener('DOMContentLoaded', myFunction, false);
+</script>
+</html>

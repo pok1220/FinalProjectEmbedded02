@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<title>esp8266 Web Server</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=width-device, initial-scale=1.0">   
+</head>
+<body>
+<!-- <p> LED Status: <span id="led-stat">__</span> </p> -->
+<button onclick="myFunction()"> Refresh </button>
+<p> Temperature: <span id="temp">__</span> </p>
+<p> Humidity: <span id="humid">__</span> </p>
+
+
+
+</body>
+
+<script>
+
+function myFunction()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstat";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("led-stat").innerHTML = this.responseText;
+      document.getElementById("temp").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+  myFunction2();
+};
+
+
+function myFunction2()
+{
+  console.log("humidity!");
+  var xhr = new XMLHttpRequest();
+  var url = "/humid";
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("humid").innerHTML=this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+
+
+
+document.addEventListener('DOMContentLoaded', myFunction, false);
+//document.addEventListener('DOMContentLoaded', myFunction2, false);
+</script>
+</html>
+
+<!--  -->
