@@ -1,5 +1,5 @@
-import { login } from "./api.js"
-import * as itemController from "./api.js";
+import { login } from 
+import * as itemController from "../../data/api.js";
 
 export async function handleLogin(){
     const usertologin = document.getElementById("username").value;
