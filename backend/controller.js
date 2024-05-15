@@ -44,11 +44,14 @@ router.post("/register", async (req, res) => {
       if(!user){res.status(200).json({ username :  null , message : "forgot your name?"})}
       else{
         if (user.password == req.body.password){
-          res.status(200).json(user)
-      }
-      else{
-          res.status(200).json({ username : null , message : "wrong password"})
-      }
+            await User.updateMany({Current : true}, {$set : {Current : false}});
+            await User.updateOne({username : req.body.username}, {$set : {Current : true}}).then(
+          res.status(200).json(user));
+
+        }
+        else{
+            res.status(200).json({ username : null , message : "wrong password"})
+        }
       }
       
       
@@ -60,14 +63,19 @@ router.post("/register", async (req, res) => {
   });
   router.get("/updatePoint", async (req, res) => {
     const {addPoint} = req.query;
+    const CurrentUser = await User.findOne({Current : true});
+    if(CurrentUser != [] && addPoint == "true"){
+        
 
-    if(localStorage.getItem('username') != null && addPoint){
-        const Player = await User.findOne({username : localStorage.getItem("username")});
-
-        await User.updateOne({username : Player.username}, {$set : {point : Player.point + 1}});
+        await User.updateOne({Current : true}, {$set : {point : CurrentUser.point + 1}});
+        res.send(await User.find({}));
     }
     else{
-
+        console.log(CurrentUser);
+        console.log(typeof(CurrentUser))
+        console.log(typeof(req.query.addPoint));
+        res.send(req.query.addPoint)
     }
   })
+  
   export default router;
