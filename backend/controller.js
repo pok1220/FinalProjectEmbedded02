@@ -77,5 +77,22 @@ router.post("/register", async (req, res) => {
         res.send(req.query.addPoint)
     }
   })
+  router.get("/changePoint", async (req, res) => {
+    const {reducePoint} = req.query;
+    console.log(parseInt(reducePoint));
+    console.log(typeof(reducePoint));
+    const CurrentUser = await User.findOne({Current : true});
+    if(CurrentUser != []){
+        
+        if(CurrentUser.point - parseInt(reducePoint) >= 0){
+            await User.updateOne({Current : true}, {$set : {point : CurrentUser.point - parseInt(reducePoint)}});
+            res.send(await User.find({}));
+        }
+        else{
+            res.send("not enough point")
+        }
+    }
+
+  })
   
   export default router;
