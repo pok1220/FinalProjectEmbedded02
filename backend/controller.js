@@ -1,6 +1,7 @@
 import express from "express";
 import User from "./itemModel.js"
 // import User from "./itemModel.js";
+import * as itemController from "./netpieController.js";
 
 const router = express.Router();
 
@@ -64,6 +65,8 @@ router.post("/register", async (req, res) => {
   router.get("/updatePoint", async (req, res) => {
     const {addPoint} = req.query;
     const CurrentUser = await User.findOne({Current : true});
+    
+    
     if(CurrentUser != [] && addPoint == "true"){
         
 
@@ -94,5 +97,6 @@ router.post("/register", async (req, res) => {
     }
 
   })
+  
   
   export default router;

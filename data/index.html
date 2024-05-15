@@ -10,12 +10,25 @@
 <button onclick="myFunction()"> Refresh </button>
 <p> Temperature: <span id="temp">__</span> </p>
 <p> Humidity: <span id="humid">__</span> </p>
+<button id="test">Test</button>
 
 
 
 </body>
 
 <script>
+var prevHumidity = -1;
+async function getRequest(){
+  
+  if(parseInt(this.responseText) <= 800 && prevHumidity != parseInt(this.responseText)){
+    await fetch("http://localhost:3000/updatePoint?addPoint=true")
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+    prevHumidity = parseInt(this.responseText);
+  }
+  
+}
 
 function myFunction()
 {
@@ -54,6 +67,7 @@ function myFunction2()
 
 
 document.addEventListener('DOMContentLoaded', myFunction, false);
+setInterval(getRequest, 500);
 //document.addEventListener('DOMContentLoaded', myFunction2, false);
 </script>
 </html>
