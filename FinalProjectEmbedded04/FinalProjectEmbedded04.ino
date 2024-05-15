@@ -20,8 +20,8 @@ const byte TX = D7;
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "Zx";
-const char* password = "6530204321";
+const char* ssid = "lek5745817";
+const char* password = "025052696";
 const char* mqtt_server = "broker.netpie.io";
 const char* mqtt_Client="98681b12-4bd9-47e2-b248-95c76fde1038";
 const char* mqtt_username="G9jXkZiRJNbFbDmK2LWQKNNgMLZZL1xt";
@@ -204,6 +204,5 @@ String current_state="";
   data.toCharArray(msg , (data.length() + 1));
   client.publish("@shadow/data/update", msg);
   client.loop();
-  delay(1000);
    
 }
