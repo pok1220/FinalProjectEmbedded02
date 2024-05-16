@@ -9,6 +9,7 @@
     <button id = "myfunction" > Refresh </button>
     <p> Temperature: <span id="temp">__</span> </p>
     <p> Humidity: <span id="humid">__</span> </p>
+    <p> Point: <span id="point">__</span> </p>
     <button id="test">Test</button>
 
     <script type="module">
@@ -34,7 +35,7 @@
             if (await data) {
                 document.getElementById("temp").innerHTML = await data.Temperature;
                 document.getElementById("humid").innerHTML = await data.Humidity;
-
+                document.getElementById("point").innerHTML = await ;
                 // Update points if the humidity condition is met
                 
                     const getuserdata = await getUserData();
