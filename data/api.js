@@ -37,5 +37,10 @@ export async function register(userdata){
   export async function reducePoint(reducePoint){
     await fetch(`http://localhost:3000/changePoint?newPoint=${reducePoint}`)
   } // reduce point from buy item
+  export async function getCurrentUser(){
+    const curUser = await fetch(`http://localhost:3000/getCurrentUser`)
+    .then(data => data.json());
+    return await curUser;
+  }
 
 

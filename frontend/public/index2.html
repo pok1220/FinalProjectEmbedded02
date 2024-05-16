@@ -13,8 +13,13 @@
     <button id="test">Test</button>
 
     <script type="module">
-        var prevHumidity = -1;
-
+        
+        // var prevHumidity = -1;
+        async function getCurrentUser(){
+            const curUser = await fetch(`http://localhost:3000/getCurrentUser`)
+            .then(data => data.json());
+            return await curUser;
+        } 
         async function getUserData() {
             try {
                 const data = await fetch(`http://localhost:3000/Netpie/testNetPie2`)
@@ -29,13 +34,14 @@
         async function myFunction() {
             console.log("button was clicked!");
             const data = await getUserData();
+            const curUser= await getCurrentUser();
 
             // console.log(typeof(data.data));
             // console.log(data.data);
             if (await data) {
                 document.getElementById("temp").innerHTML = await data.Temperature;
                 document.getElementById("humid").innerHTML = await data.Humidity;
-                document.getElementById("point").innerHTML = await ;
+                document.getElementById("point").innerHTML = await curUser.point;
                 // Update points if the humidity condition is met
                 
                     const getuserdata = await getUserData();
@@ -50,7 +56,7 @@
                     }
                     await localStorage.removeItem("prevsoil");
                     await localStorage.setItem("prevsoil",getuserdata);
-                    prevHumidity = parseInt(data.humidity);
+                    // prevHumidity = parseInt(data.humidity);
                 
             }
         }
@@ -58,8 +64,11 @@
         async function getRequest() {
             try {
                 const response = await fetch("http://localhost:3000/");
+                const curData = await getUserData();
                 const data = await response.json();
                 console.log(data);
+                console.log(curData.soil)
+
             } catch (error) {
                 console.error('Error updating point:', error);
             }

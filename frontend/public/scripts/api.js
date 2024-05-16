@@ -23,9 +23,9 @@ export async function register(userdata){
     return user;
   }
   
-  export async function updatePoint(addPoint){
-    await fetch(`http://localhost:3000/updatePoint?addPoint=${addPoint}`)
-  } //addpoint is true or false
+  // export async function updatePoint(addPoint){
+  //   await fetch(`http://localhost:3000/updatePoint?addPoint=${addPoint}`)
+  // } //addpoint is true or false
   export async function getUserStatus(){
     const data = await fetch(`http://localhost:3000/Netpie/testNetPie1`)
     .then(res => res.json());

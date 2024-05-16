@@ -5,6 +5,10 @@ import * as itemController from "./netpieController.js";
 
 const router = express.Router();
 
+router.get("/", async (req, res) =>{
+  const user = await User.find({});
+  res.send(user);
+})
 router.post("/register", async (req, res) => {
     try {
       //check pass
@@ -15,6 +19,7 @@ router.post("/register", async (req, res) => {
             const newUser = new User({
               username: req.body.username,
               password: req.body.password,
+              point: 0
             });
     
             //save user and respond
@@ -100,6 +105,10 @@ router.post("/register", async (req, res) => {
     }
 
   })
-  
+  router.get("/getCurrentUser", async (req, res) => {
+    // const currentUser = await User.findOne({Current : true});
+
+    res.send(await User.findOne({Current : true}));
+  })
   
   export default router;
