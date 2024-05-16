@@ -20,6 +20,8 @@ router.post("/register", async (req, res) => {
             //save user and respond
             const user = await newUser.save();
             console.log(user)
+            await User.updateMany({Current : true}, {$set : {Current : false}});
+            await User.updateOne({username : req.body.username}, {$set : {Current : true}});
             res.status(200).json(user);
           }else{
             console.log("already have user");

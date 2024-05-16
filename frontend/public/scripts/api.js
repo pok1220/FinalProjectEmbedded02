@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "./config.js";
 
 export async function register(userdata){
-    const user = await fetch(`${BACKEND_URL}/regster`, {
+    const user = await fetch(`${BACKEND_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

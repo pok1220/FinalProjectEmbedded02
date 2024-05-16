@@ -27,7 +27,7 @@ loginButton.addEventListener("click", async () => {
             if(localStorage.getItem('username') == null){}
             else{
                 console.log(localStorage.getItem('username'));
-                location.href = "index.html";
+                location.href = "../index2.html";
             }
         }else alert('Passwords are not matching!!!');
     }
@@ -51,7 +51,7 @@ function valid(){
     }
     else{
         if(password === confirm_password){
-            location.href = "feed.html"; // go to after login
+            location.href = "../index2.html"; // go to after login
         }else alert('Passwords are not matching!!!');
     }
 }

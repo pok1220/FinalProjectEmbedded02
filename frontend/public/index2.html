@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <button onclick="myFunction()"> Refresh </button>
+    <button id = "myfunction" > Refresh </button>
     <p> Temperature: <span id="temp">__</span> </p>
     <p> Humidity: <span id="humid">__</span> </p>
     <button id="test">Test</button>
@@ -23,10 +23,12 @@
                 console.error('Error fetching user data:', error);
             }
         }
-
+        document.getElementById('myfunction').addEventListener("click", myFunction)
+        
         async function myFunction() {
             console.log("button was clicked!");
             const data = await getUserData();
+
             // console.log(typeof(data.data));
             // console.log(data.data);
             if (await data) {
@@ -34,13 +36,19 @@
                 document.getElementById("humid").innerHTML = await data.data.Humidity;
 
                 // Update points if the humidity condition is met
-                if (parseInt(data.humidity) <= 800 && prevHumidity != parseInt(data.humidity)) {
-                    await fetch("http://localhost:3000/updatePoint?addPoint=true")
-                        .then(res => res.json())
-                        .then(pointData => console.log(pointData));
-
+                
+                    const getuserdata = await getUserData().soil;
+                    if (getuserdata && !localstorage.get("prevsoil")) {
+                        //localstorage.clear or sth
+                        
+                        await fetch("http://localhost:3000/updatePoint?addPoint=true")
+                            .then(res => res.json())
+                            .then(pointData => console.log(pointData));
+                    }
+                    localstorage.removeItem("prevsoil");
+                    localstorage.setItem("prevsoil") = getuserdata;
                     prevHumidity = parseInt(data.data.humidity);
-                }
+                
             }
         }
 

@@ -1,4 +1,4 @@
-import { register } from "./api.js";
+import { register , getUserData } from "./api.js";
 
 export async function handleRegister(){
     const usertoreg = document.getElementById("username").value;
@@ -18,7 +18,7 @@ export async function handleRegister(){
     if(await userloggedin.username != null){
         console.log(localStorage.getItem('username'));
         localStorage.setItem('username',await userloggedin.username);
-        localStorage.setItem("prevSoil", await itemController.getUserData().data.soil)
+        localStorage.setItem("prevSoil", await getUserData().soil)
         console.log(localStorage.getItem('username'));
     }else{
         console.log(localStorage.getItem('username'));
