@@ -59,17 +59,49 @@
             font-size: 36px;
         }
 
+        .log-out button{
+            width: 10%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            position: fixed; 
+            right: 0; 
+            margin-right: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .log-out button:hover{
+            width: 10%;
+            padding: 10px;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            position: absolute; 
+            right: 0; 
+            margin-right: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            
+        }
     </style>
 </head>
 <body>
     
     
     <div class = "refresh-container">
+        
         <button id="myfunction"> Refresh </button>
         <p> Temperature: <span id="temp">__</span> </p>
         <p> Humidity: <span id="humid">__</span> </p>
         <p> Point: <span id="point">__</span> </p>
+    </div>
+
+    <div class = "log-out">
+        <button id = "logout">LOG OUT</button>
     </div>
 
     <script type="module">
@@ -102,6 +134,7 @@
                 document.getElementById("temp").innerHTML = await data.Temperature;
                 document.getElementById("humid").innerHTML = await data.Humidity;
                 document.getElementById("point").innerHTML = await curUser.point;
+                
                 // Update points if the humidity condition is met
                 
                     const getuserdata = await getUserData();
@@ -133,6 +166,11 @@
                 console.error('Error updating point:', error);
             }
         }
+
+        document.getElementById("logout").addEventListener("click", function () {
+                // Redirect to the login page
+               location.href = "index.html";
+            });
 
         document.addEventListener('DOMContentLoaded', myFunction, false);
         setInterval(getRequest, 500);
