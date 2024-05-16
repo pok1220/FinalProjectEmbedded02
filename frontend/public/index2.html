@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>esp8266 Web Server</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <button onclick="myFunction()"> Refresh </button>
+    <p> Temperature: <span id="temp">__</span> </p>
+    <p> Humidity: <span id="humid">__</span> </p>
+    <button id="test">Test</button>
+
+    <script type="module">
+        var prevHumidity = -1;
+
+        async function getUserData() {
+            try {
+                const response = await fetch(`http://localhost:3000/Netpie/testNetPie2`);
+                const data = await response.json();
+                return await data;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        async function myFunction() {
+            console.log("button was clicked!");
+            const data = await getUserData();
+            // console.log(typeof(data.data));
+            // console.log(data.data);
+            if (await data) {
+                document.getElementById("temp").innerHTML = await data.data.Temperature;
+                document.getElementById("humid").innerHTML = await data.data.Humidity;
+
+                // Update points if the humidity condition is met
+                if (parseInt(data.humidity) <= 800 && prevHumidity != parseInt(data.humidity)) {
+                    await fetch("http://localhost:3000/updatePoint?addPoint=true")
+                        .then(res => res.json())
+                        .then(pointData => console.log(pointData));
+
+                    prevHumidity = parseInt(data.data.humidity);
+                }
+            }
+        }
+
+        async function getRequest() {
+            try {
+                const response = await fetch("http://localhost:3000/updatePoint?addPoint=true");
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error updating point:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', myFunction, false);
+        setInterval(getRequest, 500);
+    </script>
+</body>
+</html>
