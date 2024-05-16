@@ -42,12 +42,13 @@ router.post("/register", async (req, res) => {
   router.post("/login", async (req, res) => {
     try {
       const user = await User.findOne({ username: req.body.username });
+      // console.log("user");
       if(!user){res.status(200).json({ username :  null , message : "forgot your name?"})}
       else{
         if (user.password == req.body.password){
             await User.updateMany({Current : true}, {$set : {Current : false}});
-            await User.updateOne({username : req.body.username}, {$set : {Current : true}}).then(
-          res.status(200).json(user));
+            await User.updateOne({username : req.body.username}, {$set : {Current : true}})
+          res.status(200).json(user);
 
         }
         else{
