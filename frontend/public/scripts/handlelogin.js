@@ -12,10 +12,11 @@ export async function handleLogin(){
     };
     
     const userloggedin = await login(user);
+    console.log(await login(user));
     if(await userloggedin.username != null){   
         localStorage.setItem('username',await userloggedin.username);
-        //getUserData.ss
-        localStorage.setItem("prevSoil", await getUserData().data.soil)
+        console.log(await getUserData());
+        localStorage.setItem("prevSoil", await getUserData().soil);
     }else{
         localStorage.removeItem('username');
         alert(userloggedin.message);

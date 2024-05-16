@@ -1,6 +1,7 @@
 import { BACKEND_URL } from "./config.js";
+
 export async function register(userdata){
-    const user = await fetch(`${BACKEND_URL}/auth/register`, {
+    const user = await fetch(`${BACKEND_URL}/regster`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -12,7 +13,7 @@ export async function register(userdata){
   }
   
   export async function login(userdata){
-    const user = await fetch(`${BACKEND_URL}/auth/login`, {
+    const user = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +34,7 @@ export async function register(userdata){
   export async function getUserData(){
     const data = await fetch(`http://localhost:3000/Netpie/testNetPie2`)
     .then(res => res.json());
-    return await data;
+    return await data.data;
   } // return user data
   export async function reducePoint(reducePoint){
     await fetch(`http://localhost:3000/changePoint?newPoint=${reducePoint}`)
