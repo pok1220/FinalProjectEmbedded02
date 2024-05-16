@@ -1,5 +1,5 @@
-import { handleLogin } from "./handlelogin.js";
-
+//import { handleLogin } from "./handlelogin.js";
+import { handleLogin } from "./handlelogin";
 const loginButton = document.getElementById('login-btn');
 loginButton.addEventListener("click", async () => {
     if(document.getElementById('username').value === '' && document.getElementById('password').value === ''){

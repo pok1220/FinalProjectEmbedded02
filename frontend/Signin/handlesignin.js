@@ -1,5 +1,5 @@
-import { register } from "../../data/api.js"
 
+import { register } from "../api/api";
 export async function handleRegister(){
     const usertoreg = document.getElementById("username").value;
     const pswtoreg = document.getElementById("password").value;

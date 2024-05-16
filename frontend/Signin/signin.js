@@ -1,6 +1,6 @@
-import { handleRegister } from "./handlesignin.js";
 
-const loginButton = document.getElementById("login-btn");
+import { handleRegister } from "./handlesignin";
+const loginButton = document.getElementById("signin-btn");
 loginButton.addEventListener("click", async () => {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;

@@ -1,6 +1,7 @@
-import { login } from 
-import * as itemController from "../../data/api.js";
 
+import { login } from "../api/api";
+//import * as itemController from "../../data/api.js";
+import * as itemController from "../api/api";
 export async function handleLogin(){
     const usertologin = document.getElementById("username").value;
     const pswtologin = document.getElementById("password").value;
