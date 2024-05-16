@@ -13,7 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #bbe1f6;
         }
 
         .signin-container {
@@ -23,6 +23,22 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
+
+        .signin-container:hover{
+            background-color: #ffffffcd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            width: 300px;
+        }
+
+        .signin-container p{
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+
 
         .signin-container h1 {
             margin-bottom: 20px;
@@ -50,6 +66,10 @@
         .signin-container button:hover {
             background-color: #0056b3;
         }
+
+        .signin-link{
+            font-size: 22px;
+        }
     </style>
 </head>
 
@@ -59,6 +79,13 @@
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
         <button id="login-btn">Log In</button>
+        <p>OR</p>
+        <p>
+            Create New Account.Please Click 
+            <br>
+            <br>
+            <a class="signin-link" href="index3.html">Sign Up</a>.
+        </p>
     </div>
 
 </body>

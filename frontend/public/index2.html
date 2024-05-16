@@ -4,13 +4,73 @@
     <title>esp8266 Web Server</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background-color: #d5f6db; 
+        }
+        
+        .refresh-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            justify-content: center;
+            align-items: center;
+            background-color: #b0e49c;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            
+        }
+
+        .refresh-container:hover{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            justify-content: center;
+            align-items: center;
+            background-color: #79c55b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            width: 300px;
+            
+        }
+        .refresh-container button{
+             width: 100%;
+            padding: 10px;
+            background-color: #398c4f;
+            border: none;
+            border-radius: 4px;
+            color: #f7f9f7;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .refresh-container button:hover {
+            background-color: #68fa5b;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .refresh-container p{
+            font-size: 36px;
+        }
+
+
+    </style>
 </head>
 <body>
-    <button id = "myfunction" > Refresh </button>
-    <p> Temperature: <span id="temp">__</span> </p>
-    <p> Humidity: <span id="humid">__</span> </p>
-    <p> Point: <span id="point">__</span> </p>
-    <button id="test">Test</button>
+    
+    
+    <div class = "refresh-container">
+        <button id="myfunction"> Refresh </button>
+        <p> Temperature: <span id="temp">__</span> </p>
+        <p> Humidity: <span id="humid">__</span> </p>
+        <p> Point: <span id="point">__</span> </p>
+    </div>
 
     <script type="module">
         
