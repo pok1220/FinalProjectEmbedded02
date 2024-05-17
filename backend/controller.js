@@ -110,5 +110,7 @@ router.post("/register", async (req, res) => {
 
     res.send(await User.findOne({Current : true}));
   })
-  
+  router.get("/removeCurrentUser", async (req, res) => {
+    await User.updateOne({Current : true}, {$set : {Current : false}});
+  })
   export default router;
