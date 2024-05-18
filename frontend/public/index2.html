@@ -8,7 +8,8 @@
     <style>
         
         body {
-            background-color: #d5f6db; 
+            background-color: #d5f6db;
+            position: relative; 
         }
         
         .refresh-container {
@@ -88,7 +89,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 1);
             
         }
-        body {background: #222;}
+        body {background: #7cb684;}
 
         /* leaf animations */
 
@@ -226,6 +227,142 @@
                 opacity: 0;
             }
         }
+        /* Droplet animation */
+        .droplet {
+            position: relative;
+            left: 370px; /* Move the droplet 50px to the right */
+            width: 20px;
+            height: 20px;
+            background: #2196f3;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+            animation: fall 2s infinite ease-in;
+        }
+
+        .droplet::after {
+            content: '';
+            position: relative;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #2196f3;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+        }
+
+        @keyframes fall {
+            0% {
+                top: -100px;
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+
+        .gif-container {
+            position: relative;
+            text-align: left;
+        }
+
+        .gif-container img {
+            max-width: 50%;
+            height: 40%;
+        }
+        .cat-container{
+            position: relative; /* เพิ่มคำสั่ง position */
+            bottom: 200px; /* เพิ่มค่า top เพื่อขยับขึ้น */
+            right: 200px;
+            text-align: right;
+            
+            
+        }
+        .cat-container img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .helicopter {
+            position: fixed;
+            top: 20px;
+            width: 100px;
+            height: 50px;
+            background: #013d06;
+            border-radius: 10px 10px 5px 5px;
+            animation: fly 5s infinite linear;
+        }
+
+        .helicopter::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 10px;
+            background: #666;
+            border-radius: 5px;
+            animation: rotate-blade 0.2s infinite linear;
+        }
+
+        .helicopter::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 4px;
+            background: #666;
+            border-radius: 2px;
+        }
+
+        .tail-rotor {
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 10px);
+            transform: translateY(-50%);
+            width: 10px;
+            height: 2px;
+            background: #666;
+            animation: rotate-tail 0.2s infinite linear;
+        }
+
+        @keyframes rotate-blade {
+            0% {
+                transform: translateX(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-tail {
+            0% {
+                transform: translateY(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-50%) rotate(360deg);
+            }
+        }
+
+        @keyframes fly {
+            0% {
+                left: -100px; /* Start off-screen to the left */
+            }
+            100% {
+                left: 100vw; /* Move to off-screen to the right */
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,6 +380,19 @@
 
     <div class = "log-out">
         <button id = "logout">LOG OUT</button>
+    </div>
+
+    <div class="droplet"></div>
+    <div class="gif-container">
+        <img src="/source.gif" alt="Descriptive text for the GIF">
+    </div>
+
+    <div class="cat-container">
+        <img src="/2019-cat-on-the-run-animation.gif" alt="CAT GIF">
+    </div>
+
+    <div class="helicopter">
+        <div class="tail-rotor"></div>
     </div>
 
     <script type="module">
@@ -352,8 +502,6 @@
         }
         setInterval(setBoxShadow, 4000);
 
-
-        
     </script>
 </body>
 </html>
