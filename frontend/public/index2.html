@@ -279,17 +279,21 @@
                 // Update points if the humidity condition is met
                 
                     const getuserdata = await getUserData();
-                    console.log(typeof(getuserdata.soil));
-                    console.log(getuserdata.soil);
-                    if (getuserdata.soil==true && localStorage.getItem("prevsoil")==false) {
+
+                    console.log("check");
+                    console.log(typeof(localStorage.getItem("prevsoil")));
+                    console.log(localStorage.getItem("prevsoil"));
+                    //console.log(getuserdata.soil);
+
+                    if (getuserdata.soil==true && localStorage.getItem("prevsoil")=="false") {
                         //localstorage.clear or sth
-                        
+                        console.log("Checker");
                         await fetch("http://localhost:3000/updatePoint?addPoint=true")
                             .then(res => res.json())
                             .then(pointData => console.log(pointData));
                     }
                     await localStorage.removeItem("prevsoil");
-                    await localStorage.setItem("prevsoil",getuserdata);
+                    await localStorage.setItem("prevsoil",getuserdata.soil);
                     // prevHumidity = parseInt(data.humidity);
                 
             }
