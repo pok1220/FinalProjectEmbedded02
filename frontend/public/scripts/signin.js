@@ -27,7 +27,7 @@ loginButton.addEventListener("click", async () => {
             if(localStorage.getItem('username') == null){}
             else{
                 console.log(localStorage.getItem('username'));
-                location.href = "../index2.html";
+                location.href = "../index.html";
             }
         }else alert('Passwords are not matching!!!');
     }

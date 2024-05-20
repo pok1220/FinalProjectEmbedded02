@@ -16,7 +16,9 @@ document.getElementById('login-btn').addEventListener("click", async () => {
     }
     else{
         await handleLogin();
-        if(localStorage.getItem('username') == null){}
+        if(localStorage.getItem('username') == null){
+            
+        }
         else{location.href = "../index2.html";}
     }
 });
