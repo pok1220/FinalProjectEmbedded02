@@ -32,14 +32,14 @@
     <div class = "temperature" id = "temperature" display : flex;
         flex-direction: column;>
         <img id="temeratureGIF" src="/temperature.gif" alt="STEMP GIF ">
-        <p> Temperature: <span id="temp">__</span> </p>
+        <p> Temperature: <span id="temp">__</span> °C </p>
     </div>
 
     <div class="humidity-container" id="showTemp">
             <!-- <button id="myfunction"> Refresh </button> -->
             <img id="humidityGIF" src="/humidity.gif" alt="humidity GIF ">
             <!-- <p> Temperature: <span id="temp">__</span> </p> -->
-            <p> Humidity: <span id="humid">__</span> </p>
+            <p> Humidity: <span id="humid">__</span> %</p>
             <!-- <p> Point: <span id="point">__</span> </p> -->
     </div>
 
@@ -159,10 +159,10 @@
             const strTemp = temp + "px";
             console.log(strTemp)
             console.log(typeof (strTemp));
-            document.getElementById('showTemp').style.boxShadow = `0 0 ${strTemp} red`
+            // document.getElementById('showTemp').style.boxShadow = `0 0 ${strTemp} red`
             //I MODIFY THIS
             document.getElementById('temperature').style.boxShadow = `0 0 ${strTemp} red`
-            document.getElementById('point-container').style.boxShadow = `0 0 ${strTemp} red`
+            // document.getElementById('point-container').style.boxShadow = `0 0 ${strTemp} red`
         }
         setInterval(setBoxShadow, 4000);
 
