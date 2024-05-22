@@ -16,7 +16,9 @@
     <div class="log-out">
         <button id="logout">LOG OUT</button>
     </div>
-
+    <div class = "refresh">
+        <button id="myfunction"> Refresh </button>
+    </div>
     <div class="droplet"></div>
     <div class = "droplet2"></div>
     <div class="droplet3"></div>
@@ -27,22 +29,24 @@
     
     <div class = "parent" >
 
-    <div class="gif-container">
-        <img id="cloud" src="/cloudy.gif">
-        <img id="tree" src="/source.gif" alt="Descriptive text for the GIF">
-        
+    <div class = "temperature" id = "temperature" display : flex;
+        flex-direction: column;>
+        <img id="temeratureGIF" src="/temperature.gif" alt="STEMP GIF ">
+        <p> Temperature: <span id="temp">__</span> </p>
     </div>
 
-    <div class="refresh-container" id="showTemp">
-            <button id="myfunction"> Refresh </button>
-            <p> Temperature: <span id="temp">__</span> </p>
+    <div class="humidity-container" id="showTemp">
+            <!-- <button id="myfunction"> Refresh </button> -->
+            <img id="humidityGIF" src="/humidity.gif" alt="humidity GIF ">
+            <!-- <p> Temperature: <span id="temp">__</span> </p> -->
             <p> Humidity: <span id="humid">__</span> </p>
-            <p> Point: <span id="point">__</span> </p>
+            <!-- <p> Point: <span id="point">__</span> </p> -->
     </div>
 
-    <div class="cat-container">
-        <img id= "sun" src = "/sun.gif" alt = "SUN GIF ">
-        <img  id = "cat" src="/2019-cat-on-the-run-animation.gif" alt="CAT GIF">
+    <div class="point-container" id = "point-container">
+        <img id= "score" src = "/score.gif" alt = "SCORE GIF ">
+        <p> Point: <span id="point">__</span> </p>
+        <!-- <img  id = "cat" src="/2019-cat-on-the-run-animation.gif" alt="CAT GIF"> -->
     </div>
 
     </div>
@@ -156,6 +160,9 @@
             console.log(strTemp)
             console.log(typeof (strTemp));
             document.getElementById('showTemp').style.boxShadow = `0 0 ${strTemp} red`
+            //I MODIFY THIS
+            document.getElementById('temperature').style.boxShadow = `0 0 ${strTemp} red`
+            document.getElementById('point-container').style.boxShadow = `0 0 ${strTemp} red`
         }
         setInterval(setBoxShadow, 4000);
 
